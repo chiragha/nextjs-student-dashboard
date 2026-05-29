@@ -63,7 +63,7 @@ student-dashboard/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/student-dashboard.git
+git clone https://github.com/chiragha/nextjs-student-dashboard
 cd student-dashboard
 ```
 
@@ -145,8 +145,7 @@ npm run dev
 **Shivani Sinha**
 💼 Web Developer | MERN Stack | Next.js Enthusiast
 
-🔗 GitHub: [https://github.com/your-username](https://github.com/your-username)
-🔗 LinkedIn: [https://linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
+🔗 GitHub: [https://github.com/chiragha/nextjs-student-dashboard](https://github.com/your-username)
 
 ---
 
