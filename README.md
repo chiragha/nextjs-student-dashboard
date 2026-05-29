@@ -3,8 +3,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge\&logo=nextdotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Blue?style=for-the-badge\&logo=typescript)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react)
-![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
 
 > 🎯 A modern, responsive **Student Dashboard web application** built using **Next.js** with a focus on clean UI, modular architecture, and production-ready performance.
 
@@ -13,7 +12,7 @@
 ## 🌐 Live Demo
 
 🔗 **[View Live Project](#)**
-*(Replace with your Vercel link)*
+[https://nextjs-student-dashboard.vercel.app/](https://nextjs-student-dashboard.vercel.app/)
 
 ---
 
@@ -107,16 +106,6 @@ npm run dev
 5. Done!
 
 ---
-
-## 📸 Screenshots
-
-> Add UI screenshots here
-
-```
-📌 Dashboard Home
-📌 Activity Section
-📌 Mobile Responsive View
-```
 
 ---
 
