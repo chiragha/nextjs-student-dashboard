@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import { TrendingUp } from "lucide-react";
+
 const tileVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -17,13 +19,14 @@ const tileVariants: Variants = {
     },
   },
 };
+
 export default function ActivityTile() {
   const activityData = [
     { day: "M", value: 30 },
     { day: "T", value: 60 },
     { day: "W", value: 80 },
     { day: "T", value: 40 },
-    { day: "F", value: 90 },
+    { day: "F", value: 90, active: true },
     { day: "S", value: 50 },
     { day: "S", value: 70 },
   ];
@@ -32,69 +35,149 @@ export default function ActivityTile() {
     <motion.section
       variants={tileVariants}
       whileHover={{
-        scale: 1.02,
-        y: -4,
+        scale: 1.015,
+        y: -5,
       }}
       transition={{
         type: "spring",
         stiffness: 90,
         damping: 18,
-        mass: 1,
       }}
       className="
         relative
         overflow-hidden
-        rounded-[2rem]
+        rounded-[2.5rem]
         border
-        border-zinc-800
-        hover:border-zinc-700
-        bg-zinc-950
+        border-white/10
+        bg-white/[0.03]
+        backdrop-blur-2xl
         p-6
-        md:col-span-2"
+        md:p-8
+        md:col-span-2
+        min-h-[340px]
+      "
     >
-      <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-400/10 blur-[100px] rounded-full" />
-      <h2 className="text-lg font-semibold mb-6 relative z-10">
-        Weekly Activity
-      </h2>
-      <div
-        className="
-  flex
-  justify-between
-  items-end
-  h-44
-  relative
-  z-10">
-        {activityData.map((item, index) => (
-          <div
-            key={index}
-            className=" flex
-           flex-col
-          items-center
-           justify-end
-            h-full">
- 
-            <motion.div
-              initial={{ height: 0 }}
-              animate={{
-                height: `${item.value}%`,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.08,
-              }}
-              className="
-  w-10
-  md:w-12
-  rounded-[999px]
-  bg-gradient-to-t
-  from-zinc-700
-  via-zinc-500
-  to-zinc-200
-"
-            />
-            <span className="text-xs text-zinc-500 mt-2">{item.day}</span>
+    
+      <div className="absolute top-0 right-0 w-[220px] h-[220px] bg-cyan-500/10 blur-[120px] rounded-full" />
+
+      <div className="absolute bottom-0 left-0 w-[220px] h-[220px] bg-violet-500/10 blur-[120px] rounded-full" />
+
+   
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
+
+      <div className="relative z-10">
+   
+        <div className="flex items-start justify-between mb-10">
+          <div>
+            <p className="text-zinc-500 text-sm mb-2">
+              Learning Analytics
+            </p>
+
+            <h2 className="text-2xl font-semibold">
+              Weekly Activity
+            </h2>
           </div>
-        ))}
+
+          <div
+            className="
+              flex
+              items-center
+              gap-2
+              rounded-2xl
+              border
+              border-emerald-500/20
+              bg-emerald-500/10
+              px-4
+              py-2
+            "
+          >
+            <TrendingUp
+              size={16}
+              className="text-emerald-400"
+            />
+
+            <span className="text-sm text-emerald-300">
+              +12%
+            </span>
+          </div>
+        </div>
+
+
+        <div className="relative">
+       
+          <div
+            className="
+              absolute
+              inset-0
+              flex
+              flex-col
+              justify-between
+              opacity-20
+              pointer-events-none
+            "
+          >
+            <div className="border-t border-white/10" />
+            <div className="border-t border-white/10" />
+            <div className="border-t border-white/10" />
+            <div className="border-t border-white/10" />
+          </div>
+
+          <div
+            className="
+              relative
+              flex
+              justify-between
+              items-end
+              h-[220px]
+              gap-3
+            "
+          >
+            {activityData.map((item, index) => (
+              <div
+                key={index}
+                className="
+                  flex
+                  flex-col
+                  items-center
+                  justify-end
+                  h-full
+                  flex-1
+                "
+              >
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{
+                    height: `${item.value}%`,
+                  }}
+                  transition={{
+                    duration: 0.9,
+                    delay: index * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className={`
+                    relative
+                    w-full
+                    max-w-[52px]
+                    rounded-[30px]
+                    ${
+                      item.active
+                        ? "bg-gradient-to-t from-violet-600 via-fuchsia-500 to-violet-300 shadow-[0_0_35px_rgba(139,92,246,0.45)]"
+                        : "bg-gradient-to-t from-zinc-700 via-zinc-500 to-zinc-300"
+                    }
+                  `}
+                >
+                  {item.active && (
+                    <div className="absolute inset-0 rounded-[30px] bg-violet-400/20 blur-md" />
+                  )}
+                </motion.div>
+
+                <span className="text-sm text-zinc-500 mt-4">
+                  {item.day}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </motion.section>
   );

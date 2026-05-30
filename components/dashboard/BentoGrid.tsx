@@ -13,13 +13,15 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      delayChildren: 0.8,
-      staggerChildren: 0.28,
+      delayChildren: 0.2,
+      staggerChildren: 0.14,
     },
   },
 };
 
-export default function BentoGrid({ children }: BentoGridProps) {
+export default function BentoGrid({
+  children,
+}: BentoGridProps) {
   return (
     <motion.section
       variants={containerVariants}
@@ -27,12 +29,13 @@ export default function BentoGrid({ children }: BentoGridProps) {
       animate="show"
       className="
         grid
-       grid-cols-1
-sm:grid-cols-1
-md:grid-cols-2
-xl:grid-cols-3
-        gap-6
-       auto-rows-[minmax(220px,auto)]
+        grid-cols-1
+        md:grid-cols-2
+        xl:grid-cols-3
+        gap-5
+        lg:gap-7
+        auto-rows-[minmax(240px,auto)]
+        items-start
       "
     >
       {children}

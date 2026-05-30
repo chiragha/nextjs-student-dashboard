@@ -1,4 +1,5 @@
 "use client";
+
 import { motion, type Variants } from "framer-motion";
 import { Course } from "@/types/course";
 import { Code2, Database, FileCode, Sparkles } from "lucide-react";
@@ -31,8 +32,46 @@ const iconMap = {
   Sparkles,
 };
 
+const colorMap = {
+  Code2: {
+    bg: "bg-violet-500/15",
+    border: "border-violet-500/20",
+    icon: "text-violet-400",
+    progress: "from-violet-500 to-fuchsia-400",
+    glow: "bg-violet-500/20",
+  },
+
+  Database: {
+    bg: "bg-green-500/15",
+    border: "border-green-500/20",
+    icon: "text-green-400",
+    progress: "from-green-500 to-emerald-400",
+    glow: "bg-green-500/20",
+  },
+
+  FileCode: {
+    bg: "bg-blue-500/15",
+    border: "border-blue-500/20",
+    icon: "text-blue-400",
+    progress: "from-blue-500 to-cyan-400",
+    glow: "bg-blue-500/20",
+  },
+
+  Sparkles: {
+    bg: "bg-orange-500/15",
+    border: "border-orange-500/20",
+    icon: "text-orange-400",
+    progress: "from-orange-500 to-amber-400",
+    glow: "bg-orange-500/20",
+  },
+};
+
 export default function CourseCard({ course }: CourseCardProps) {
-  const Icon = iconMap[course.icon_name as keyof typeof iconMap] || Code2;
+  const iconName = course.icon_name as keyof typeof iconMap;
+
+  const Icon = iconMap[iconName] || Code2;
+
+  const colors = colorMap[iconName] || colorMap.Code2;
 
   return (
     <motion.article
@@ -43,73 +82,100 @@ export default function CourseCard({ course }: CourseCardProps) {
       }}
       transition={{
         type: "spring",
-        stiffness: 90,
+        stiffness: 100,
         damping: 18,
-        mass: 1,
       }}
       className="
         relative
         overflow-hidden
         rounded-[2rem]
         border
-        border-zinc-800
-        hover:border-zinc-600
-        bg-zinc-950
-        p-5 md:p-6
+        border-white/10
+        bg-white/[0.03]
+        backdrop-blur-2xl
+        p-6
+        min-h-[240px]
       "
     >
-      <>
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/20 to-transparent pointer-events-none" />
+    
+      <div
+        className={`
+          absolute
+          top-0
+          right-0
+          h-28
+          w-28
+          rounded-full
+          blur-[80px]
+          ${colors.glow}
+        `}
+      />
 
-        <div className="absolute top-0 right-0 w-28 h-28 bg-white/5 blur-[80px] rounded-full" />
+  
+      <div
+        className="
+          absolute
+          inset-0
+          bg-gradient-to-br
+          from-white/[0.02]
+          to-transparent
+          pointer-events-none
+        "
+      />
 
-        <div className="absolute inset-0 opacity-[0.04] bg-[url('/noise.png')]" />
-      </>
 
-     <div
-  className="
-    mb-5
-    relative
-    z-10
-    h-14
-    w-14
-    rounded-2xl
-    border
-    border-zinc-800
-    bg-white/[0.03]
-    flex
-    items-center
-    justify-center
-    backdrop-blur-sm
-  "
->
-  <Icon size={28} />
-</div>
+      <div className="relative z-10">
+     
+        <div
+          className={`
+            h-16
+            w-16
+            rounded-[22px]
+            border
+            flex
+            items-center
+            justify-center
+            backdrop-blur-xl
+            mb-6
+            ${colors.bg}
+            ${colors.border}
+          `}
+        >
+          <Icon size={28} className={colors.icon} />
+        </div>
 
-      <h2 className="text-xl font-semibold relative z-10">{course.title}</h2>
+  
+        <h2 className="text-2xl font-semibold tracking-tight">
+          {course.title}
+        </h2>
 
-      <p className="text-zinc-400 mt-2 relative z-10">
-        Progress: {course.progress}%
-      </p>
+        <div className="mt-4 flex items-center justify-between">
+          <p className="text-zinc-400">Progress</p>
 
-      <div className="mt-5 h-2 bg-zinc-800 rounded-full overflow-hidden relative z-10">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{
-            width: `${course.progress}%`,
-          }}
-          transition={{
-            duration: 2.5,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            h-full
-            rounded-full
-            bg-gradient-to-r
-            from-zinc-200
-            to-zinc-400
-          "
-        />
+          <span className="font-medium text-zinc-300">{course.progress}%</span>
+        </div>
+
+    
+        <div className="mt-4">
+          <div className="h-2.5 rounded-full bg-white/10 overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{
+                width: `${course.progress}%`,
+              }}
+              transition={{
+                duration: 1.5,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className={`
+                h-full
+                rounded-full
+                bg-gradient-to-r
+                ${colors.progress}
+              `}
+            />
+          </div>
+        </div>
       </div>
     </motion.article>
   );
