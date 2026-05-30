@@ -119,15 +119,6 @@ npm run dev
 
 ---
 
-## 🚀 Future Enhancements
-
-* 🔐 Authentication system (JWT / NextAuth)
-* 📊 Analytics dashboard with charts
-* 🧑‍🎓 Role-based access (Admin / Student)
-* 🔔 Real-time notifications
-* 🌐 Backend integration (Node.js + MongoDB)
-
----
 
 ## 👨‍💻 Developer
 
